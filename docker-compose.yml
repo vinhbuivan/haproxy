@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   haproxy:
-    image: docker-repo.bitel.com.pe/haproxy-trans
+    image: haproxy-trans
     volumes:
       - /etc/haproxy/:/usr/local/etc/haproxy/
       - /proc/sys/net/ipv4/ip_nonlocal_bind:/var/proc/sys/net/ipv4/ip_nonlocal_bind
