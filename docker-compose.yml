@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+  haproxy:
+    image: docker-repo.bitel.com.pe/haproxy-trans
+    volumes:
+      - /etc/haproxy/:/usr/local/etc/haproxy/
+      - /proc/sys/net/ipv4/ip_nonlocal_bind:/var/proc/sys/net/ipv4/ip_nonlocal_bind
+    ports:
+      - protocol: tcp
+        published: 25
+        target: 25
+        mode: host
+      - protocol: tcp
+        published: 465
+        target: 465
+        mode: host
+      - protocol: tcp
+        published: 587
+        target: 587
+        mode: host
+    network_mode: host
+    cap_add:
+      - SYS_MODULE
+      - NET_ADMIN
+      - NET_RAW
+    sysctls:
+      - net.ipv4.ip_nonlocal_bind=1
+    restart: always
+    environment:
+      - TZ=America/Lima
